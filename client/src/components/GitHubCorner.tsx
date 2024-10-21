@@ -7,7 +7,7 @@ function GitHubCorner() {
 
     return (
         <a
-            href=""
+            href="https://github.com/swapnil2254/Code-colllab"
             className="github-corner"
             aria-label="View source on GitHub"
             target="_blank"
