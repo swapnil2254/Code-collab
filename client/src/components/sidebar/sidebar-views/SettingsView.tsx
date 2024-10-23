@@ -4,7 +4,7 @@ import useResponsive from "@/hooks/useResponsive"
 import { editorFonts } from "@/resources/Fonts"
 import { editorThemes } from "@/resources/Themes"
 import { langNames } from "@uiw/codemirror-extensions-langs"
-import { ChangeEvent, useEffect } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 
 function SettingsView() {
     const {
@@ -18,20 +18,27 @@ function SettingsView() {
         setFontFamily,
         showGitHubCorner,
         setShowGitHubCorner,
+        isSettingsModified,
+        setIsSettingsModified,
         resetSettings,
     } = useSettings()
     const { viewHeight } = useResponsive()
 
-    const handleFontFamilyChange = (e: ChangeEvent<HTMLSelectElement>) =>
-        setFontFamily(e.target.value)
-    const handleThemeChange = (e: ChangeEvent<HTMLSelectElement>) =>
-        setTheme(e.target.value)
-    const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) =>
-        setLanguage(e.target.value)
-    const handleFontSizeChange = (e: ChangeEvent<HTMLSelectElement>) =>
-        setFontSize(parseInt(e.target.value))
-    const handleShowGitHubCornerChange = (e: ChangeEvent<HTMLInputElement>) =>
-        setShowGitHubCorner(e.target.checked)
+    const handleFontFamilyChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        setFontFamily(e.target.value), setIsSettingsModified(true)
+    }
+    const handleThemeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        setTheme(e.target.value), setIsSettingsModified(true)
+    }
+    const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        setLanguage(e.target.value), setIsSettingsModified(true)
+    }
+    const handleFontSizeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        setFontSize(parseInt(e.target.value)), setIsSettingsModified(true)
+    }
+    const handleShowGitHubCornerChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setShowGitHubCorner(e.target.checked), setIsSettingsModified(true)
+    }
 
     useEffect(() => {
         // Set editor font family
@@ -88,7 +95,7 @@ function SettingsView() {
                 title="Language"
             />
             {/* Show GitHub corner option */}
-            <div className="mt-4 flex w-full items-center justify-between">
+            {/* <div className="mt-4 flex w-full items-center justify-between">
                 <label>Show github corner</label>
                 <label className="relative inline-flex cursor-pointer items-center">
                     <input
@@ -99,9 +106,9 @@ function SettingsView() {
                     />
                     <div className="peer h-6 w-12 rounded-full bg-slate-100 outline-none duration-100 after:absolute after:left-1 after:top-1 after:flex after:h-4 after:w-4 after:items-center after:justify-center after:rounded-full after:bg-dark after:font-bold after:outline-none after:duration-500 peer-checked:after:translate-x-6 peer-checked:after:border-white peer-focus:outline-none"></div>
                 </label>
-            </div>
+            </div> */}
             <button
-                className="mt-auto w-full rounded-md border-none bg-slate-100 px-4 py-2 text-dark outline-none"
+                className={`mt-auto w-full rounded-md border-none ${isSettingsModified ? `bg-danger` : `bg-slate-100`} px-4 py-2 text-dark outline-none`}
                 onClick={resetSettings}
             >
                 Reset to default

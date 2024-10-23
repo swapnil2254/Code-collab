@@ -4,6 +4,7 @@ interface Settings {
     fontSize: number
     fontFamily: string
     showGitHubCorner: boolean
+    isSettingsModified: boolean
 }
 
 interface SettingsContext extends Settings {
@@ -12,6 +13,7 @@ interface SettingsContext extends Settings {
     setFontSize: (fontSize: number) => void
     setFontFamily: (fontFamily: string) => void
     setShowGitHubCorner: (showGitHubCorner: boolean) => void
+    setIsSettingsModified: (isSettingsModified: boolean) => void
     resetSettings: () => void
 }
 

@@ -349,7 +349,7 @@ const FileMenu = ({
 }) => {
     return (
         <div
-            className="absolute z-10 w-[150px] rounded-md border border-darkHover bg-dark p-1"
+            className="absolute z-10 w-[150px] rounded-md border border-darkHover bg-slate-100 p-1"
             style={{
                 top,
                 left,
@@ -388,7 +388,7 @@ const DirectoryMenu = ({
 }) => {
     return (
         <div
-            className="absolute z-10 w-[150px] rounded-md border border-darkHover bg-dark p-1"
+            className="absolute z-10 w-[150px] rounded-md border border-darkHover bg-slate-100 p-1"
             style={{
                 top,
                 left,

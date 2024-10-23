@@ -8,7 +8,7 @@ export default {
                 darkHover: "#3D404A",
                 light: "#f5f5f5",
                 primary: "#e67300",
-                danger: "#ef4444",
+                danger: "#fc6565",
             },
             fontFamily: {
                 poppins: ["Poppins", "sans-serif"],

@@ -29,6 +29,7 @@ const defaultSettings: Settings = {
     fontSize: 16,
     fontFamily: "Space Mono",
     showGitHubCorner: true,
+    isSettingsModified: false,
 }
 
 function SettingContextProvider({ children }: { children: ReactNode }) {
@@ -56,6 +57,10 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
         storedSettings.showGitHubCorner !== undefined
             ? storedSettings.showGitHubCorner
             : defaultSettings.showGitHubCorner
+    const storedIsSettingsModified =
+        storedSettings.isSettingsModified !== undefined
+            ? storedSettings.isSettingsModified
+            : defaultSettings.isSettingsModified
 
     const [theme, setTheme] = useState<string>(storedTheme)
     const [language, setLanguage] = useState<string>(storedLanguage)
@@ -64,6 +69,9 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
     const [showGitHubCorner, setShowGitHubCorner] = useState<boolean>(
         storedShowGitHubCorner,
     )
+    const [isSettingsModified, setIsSettingsModified] = useState<boolean>(
+        storedIsSettingsModified,
+    )
 
     const resetSettings = () => {
         setTheme(defaultSettings.theme)
@@ -71,6 +79,7 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
         setFontSize(defaultSettings.fontSize)
         setFontFamily(defaultSettings.fontFamily)
         setShowGitHubCorner(defaultSettings.showGitHubCorner)
+        setIsSettingsModified(defaultSettings.isSettingsModified)
     }
 
     useEffect(() => {
@@ -81,9 +90,17 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
             fontSize,
             fontFamily,
             showGitHubCorner,
+            isSettingsModified,
         }
         localStorage.setItem("settings", JSON.stringify(updatedSettings))
-    }, [theme, language, fontSize, fontFamily, showGitHubCorner])
+    }, [
+        theme,
+        language,
+        fontSize,
+        fontFamily,
+        showGitHubCorner,
+        isSettingsModified,
+    ])
 
     return (
         <SettingContext.Provider
@@ -98,6 +115,8 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
                 setFontFamily,
                 showGitHubCorner,
                 setShowGitHubCorner,
+                isSettingsModified,
+                setIsSettingsModified,
                 resetSettings,
             }}
         >

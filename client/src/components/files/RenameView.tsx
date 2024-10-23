@@ -95,7 +95,7 @@ function RenameView({ id, preName, setEditing, type }: RenameViewProps) {
             >
                 <input
                     type="text"
-                    className="w-full flex-grow rounded-sm bg-dark px-2 text-base text-white outline-none"
+                    className="w-full flex-grow rounded-sm bg-slate-100 px-2 text-base text-dark outline-none"
                     autoFocus
                     value={name}
                     onChange={(e) => setName(e.target.value)}
