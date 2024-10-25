@@ -25,7 +25,7 @@ export const useSettings = (): SettingsContextType => {
 
 const defaultSettings: Settings = {
     theme: "Basic Light",
-    language: "Javascript",
+    language: "javascript",
     fontSize: 16,
     fontFamily: "Space Mono",
     showGitHubCorner: true,
@@ -87,6 +87,8 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
         setShowGitHubCorner(defaultSettings.showGitHubCorner)
         setIsSettingsModified(defaultSettings.isSettingsModified)
         setAppTheme(defaultSettings.appTheme)
+
+        console.log("default-settings,", defaultSettings)
     }
 
     useEffect(() => {
