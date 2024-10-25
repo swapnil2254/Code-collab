@@ -30,6 +30,7 @@ const defaultSettings: Settings = {
     fontFamily: "Space Mono",
     showGitHubCorner: true,
     isSettingsModified: false,
+    appTheme: "light",
 }
 
 function SettingContextProvider({ children }: { children: ReactNode }) {
@@ -61,6 +62,10 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
         storedSettings.isSettingsModified !== undefined
             ? storedSettings.isSettingsModified
             : defaultSettings.isSettingsModified
+    const storedAppTheme =
+        storedSettings.appTheme !== undefined
+            ? storedSettings.appTheme
+            : defaultSettings.appTheme
 
     const [theme, setTheme] = useState<string>(storedTheme)
     const [language, setLanguage] = useState<string>(storedLanguage)
@@ -72,6 +77,7 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
     const [isSettingsModified, setIsSettingsModified] = useState<boolean>(
         storedIsSettingsModified,
     )
+    const [appTheme, setAppTheme] = useState<string>(storedAppTheme)
 
     const resetSettings = () => {
         setTheme(defaultSettings.theme)
@@ -80,6 +86,7 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
         setFontFamily(defaultSettings.fontFamily)
         setShowGitHubCorner(defaultSettings.showGitHubCorner)
         setIsSettingsModified(defaultSettings.isSettingsModified)
+        setAppTheme(defaultSettings.appTheme)
     }
 
     useEffect(() => {
@@ -91,6 +98,7 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
             fontFamily,
             showGitHubCorner,
             isSettingsModified,
+            appTheme,
         }
         localStorage.setItem("settings", JSON.stringify(updatedSettings))
     }, [
@@ -100,6 +108,7 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
         fontFamily,
         showGitHubCorner,
         isSettingsModified,
+        appTheme,
     ])
 
     return (
@@ -117,6 +126,8 @@ function SettingContextProvider({ children }: { children: ReactNode }) {
                 setShowGitHubCorner,
                 isSettingsModified,
                 setIsSettingsModified,
+                appTheme,
+                setAppTheme,
                 resetSettings,
             }}
         >

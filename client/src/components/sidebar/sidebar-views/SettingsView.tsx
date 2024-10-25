@@ -2,9 +2,10 @@ import Select from "@/components/common/Select"
 import { useSettings } from "@/context/SettingContext"
 import useResponsive from "@/hooks/useResponsive"
 import { editorFonts } from "@/resources/Fonts"
+import { globalThemes } from "@/resources/GlobalThemes"
 import { editorThemes } from "@/resources/Themes"
 import { langNames } from "@uiw/codemirror-extensions-langs"
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useEffect } from "react"
 
 function SettingsView() {
     const {
@@ -16,10 +17,10 @@ function SettingsView() {
         setFontSize,
         fontFamily,
         setFontFamily,
-        showGitHubCorner,
-        setShowGitHubCorner,
         isSettingsModified,
         setIsSettingsModified,
+        appTheme,
+        setAppTheme,
         resetSettings,
     } = useSettings()
     const { viewHeight } = useResponsive()
@@ -36,8 +37,11 @@ function SettingsView() {
     const handleFontSizeChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setFontSize(parseInt(e.target.value)), setIsSettingsModified(true)
     }
-    const handleShowGitHubCornerChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setShowGitHubCorner(e.target.checked), setIsSettingsModified(true)
+    // const handleShowGitHubCornerChange = (e: ChangeEvent<HTMLInputElement>) => {
+    //     setShowGitHubCorner(e.target.checked), setIsSettingsModified(true)
+    // }
+    const handleAppThemeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        setAppTheme(e.target.value), setIsSettingsModified(true)
     }
 
     useEffect(() => {
@@ -93,6 +97,12 @@ function SettingsView() {
                 value={language}
                 options={langNames}
                 title="Language"
+            />
+            <Select
+                onChange={handleAppThemeChange}
+                value={appTheme}
+                options={globalThemes}
+                title="Mode"
             />
             {/* Show GitHub corner option */}
             {/* <div className="mt-4 flex w-full items-center justify-between">

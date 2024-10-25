@@ -5,6 +5,7 @@ interface Settings {
     fontFamily: string
     showGitHubCorner: boolean
     isSettingsModified: boolean
+    appTheme: string
 }
 
 interface SettingsContext extends Settings {
@@ -14,6 +15,7 @@ interface SettingsContext extends Settings {
     setFontFamily: (fontFamily: string) => void
     setShowGitHubCorner: (showGitHubCorner: boolean) => void
     setIsSettingsModified: (isSettingsModified: boolean) => void
+    setAppTheme: (appTheme: string) => void
     resetSettings: () => void
 }
 
